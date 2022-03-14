@@ -25,6 +25,21 @@ router.get('/users/:username', (req, res) => {
     }
 });
 
+// POST x LogIn Utente
+router.post('/users/login', (req, res) => {
+    let found = false;
+    for (let user of userList) {
+        if (req.body.username == user.username && req.body.password == user.password) {
+            res.status(200).json({ result: true, username: user.username});
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        res.status(401).json({ result: false });
+    }
+});
+
 // POST Aggiungere utente alla lista
 router.post('/users', (req, res) => {
     let found = false;

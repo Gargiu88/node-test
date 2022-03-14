@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var noteList = [{id:'1', testo:'prova', titolo:'prova1', userCreator:'user1', timestamp: '123'}, {id:'2', testo:'prova2', titolo:'prova2', userCreator:'user2', timestamp: '456'}, {id:'3', testo:'prova3', titolo:'prova3', userCreator:'user1', timestamp: '789'}];
+var noteList = [{id:'1', testo:'prova', titolo:'prova1', userCreator:'a', timestamp: '123'}, {id:'2', testo:'prova2', titolo:'prova2', userCreator:'b', timestamp: '456'}, {id:'3', testo:'prova3', titolo:'prova3', userCreator:'a', timestamp: '789'}];
 
 // ========== LISTA API ==========
 
@@ -12,7 +12,7 @@ router.get('/note', async (req, res) => {
 
 // GET Lista Note di un Utente (es. /notes/<valore Username>)
 router.get('/note/:userCreator', async (req, res) => {
-    console.log("get note user")
+    console.log("get note user for user="+ req.params.userCreator)
     let found = false;
     // creo lista vuota
     let noteUserList = [];

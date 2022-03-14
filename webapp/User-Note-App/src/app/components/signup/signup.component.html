@@ -1,0 +1,29 @@
+<div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center">
+
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>
+                <h1>SIGN UP</h1>
+            </mat-card-title>
+        </mat-card-header>
+
+        <form class="example-form" [formGroup]="signupForm">
+            <mat-card-content>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Username" formControlName="username" class="form-control">
+                </mat-form-field>
+                <br>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Password" formControlName="password" type="password">
+                </mat-form-field>
+                <br>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Conferma password" formControlName="confPassword" type="password">
+                </mat-form-field>
+                <br>
+                <button mat-raised-button color="primary" class="btn-block">Save</button>
+            </mat-card-content>
+        </form>
+
+    </mat-card>
+</div>

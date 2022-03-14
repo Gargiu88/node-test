@@ -1,0 +1,26 @@
+<div class="login-wrapper" fxLayout="column" fxLayoutAlign="center center">
+    <mat-card class="box">
+        <mat-card-header>
+            <mat-card-title>
+                <h1>WEB APP</h1>
+            </mat-card-title>
+        </mat-card-header>
+        <form class="example-form" [formGroup]="loginForm">
+            <mat-card-content>
+                <mat-form-field class="example-full-width">
+                    <label for="username">Username</label>
+                    <input matInput formControlName="username" class="form-control">
+                </mat-form-field>
+                <br>
+                <mat-form-field class="example-full-width">
+                    <label for="password">Password</label>
+                    <input matInput formControlName="password" type="password">
+                </mat-form-field>
+            </mat-card-content>
+            <!-- Bottone x logIn che richiama funzione logIn() che dopo aver controllato le credenziali, mi indirizza alla pagina successiva alla login
+                 Bottone x SignUp che richiama funzione goToSingUp() che mi porta alla pagina della registrazione(signUp-tramite routing)-->
+            <button mat-stroked-button color="primary" class="btn-block" (click)="logIn()">Log in</button>
+            <button mat-stroked-button color="primary" class="btn-block" (click)="goToSignup()">Sign up</button>
+        </form>
+    </mat-card>
+</div>
