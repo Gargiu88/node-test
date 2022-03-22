@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var userList = [{ username: 'a', password: 'a'}, { username: 'b', password: 'b'}, { username: 'c', password: 'c'}];
+var userList = [{ username: 'a', password: 'a' }, { username: 'b', password: 'b' }, { username: 'c', password: 'c' }];
 
 // ========== LISTA API ==========
 
@@ -15,13 +15,13 @@ router.get('/users/:username', (req, res) => {
     let found = false;
     for (let user of userList) {
         if (req.params.username == user.username) {
-            res.status(200).json({ result: true, username: user.username});
+            res.status(200).json({ result: true, username: user.username });
             found = true;
             break;
         }
     }
     if (!found) {
-        res.status(404).json({ result: false });
+        res.status(404).json({ result: false, });
     }
 });
 
@@ -30,13 +30,31 @@ router.post('/users/login', (req, res) => {
     let found = false;
     for (let user of userList) {
         if (req.body.username == user.username && req.body.password == user.password) {
-            res.status(200).json({ result: true, username: user.username});
+            res.status(200).json({ result: true, username: user.username });
             found = true;
             break;
         }
     }
     if (!found) {
         res.status(401).json({ result: false });
+    }
+});
+
+// POST x Signup
+router.post('/users/signup', (req, res) => {
+    let found = false;
+    for (let user of userList) {
+        // controllo se esiste gia:
+        if (req.body.username == user.username) {
+            found = true;
+            break;
+        }
+    }
+    if (found) {
+        res.status(400).json({ result: false });
+    } else {
+        userList.push({ username: req.body.username, password: req.body.password })
+        res.status(200).json({ result: true });
     }
 });
 

@@ -23,13 +23,19 @@ import { MatDialogModule } from '@angular/material/dialog';  // modulo Dialog di
 import { FormsModule } from "@angular/forms";
 import { SignupComponent } from './components/signup/signup.component';
 import { NoteComponent } from './components/note/note.component';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { AddNoteDialogComponent } from './components/note/add-note-dialog/add-note-dialog.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     SignupComponent,
-    NoteComponent
+    NoteComponent,
+    ConfirmDialogComponent,
+    AddNoteDialogComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

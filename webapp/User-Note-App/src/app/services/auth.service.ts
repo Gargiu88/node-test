@@ -23,11 +23,11 @@ export class AuthService {
 
   logIn(u: string, p: string): Observable<any> {
     console.log('login:' + u, p);
-    return this.http.post('http://localhost:3000/user/users/login', { username: u, password: p }); // user e password = body
+    return this.http.post('http://localhost:3000/user/users/login', { username: u, password: p }); // username e password = body
   }
 
   signUp(u: string, p: string): Observable<any> {
-    console.log(u, p);
-    return this.http.put('http://localhost:3000/user/users/signup', { email: u, password: p });
+    console.log('signup:' + u, p);
+    return this.http.post('http://localhost:3000/user/users/signup', { username: u, password: p });
   }
 }

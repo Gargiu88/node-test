@@ -5,3 +5,14 @@
 table {
     width: 100%;
   }
+
+  .btn-block {
+    margin-left: 12px;
+    border-radius: 5px;
+}
+
+.login-wrapper{
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+}

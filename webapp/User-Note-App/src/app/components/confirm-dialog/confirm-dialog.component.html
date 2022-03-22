@@ -1,0 +1,16 @@
+<!-- Componente Dialog di Angular Material utilizzato per aprire finestre di dialogo modali con stili e animazioni 
+ - attributi title e message li ho impostati nel metodo removeNote() del note.component.ts -->
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  {{data.message}}
+</div>
+
+<!-- Bottoni conferma e annulla -->
+<div style="float:right;margin:20px;">
+
+  <button mat-stroked-button color="primary" class="btn-block" value="Conferma"
+    [mat-dialog-close]="true">Conferma</button>
+  <button mat-stroked-button color="primary" class="btn-block" value="Annulla"
+    [mat-dialog-close]="false">Annulla</button>
+
+</div>

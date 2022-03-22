@@ -1,0 +1,25 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+
+<div mat-dialog-content>
+  <!-- ====== FORM PER INSERIRE NUOVA NOTA ALL INTERNO DELLA MODALE ====== -->
+  <form class="example-form" [formGroup]="addNoteForm">
+    <mat-card-content>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="id" formControlName="id" class="form-control">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="titolo" formControlName="titolo">
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="testo" formControlName="testo">
+      </mat-form-field>
+    </mat-card-content>
+  </form>
+</div>
+
+<!-- Bottoni conferma e annulla -->
+<button mat-stroked-button color="primary" class="btn-block" value="Conferma" [mat-dialog-close]="true"
+  [disabled]="addNoteForm.invalid" (click)="addNote()">Conferma</button>
+<button mat-stroked-button color="primary" class="btn-block" value="Annulla" [mat-dialog-close]="false">Annulla</button>

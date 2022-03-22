@@ -1,18 +1,18 @@
 var express = require('express');
 var router = express.Router();
-var noteList = [{id:'1', testo:'prova', titolo:'prova1', userCreator:'a', timestamp: '123'}, {id:'2', testo:'prova2', titolo:'prova2', userCreator:'b', timestamp: '456'}, {id:'3', testo:'prova3', titolo:'prova3', userCreator:'a', timestamp: '789'}];
+var noteList = [{ id: '1', testo: 'prova', titolo: 'prova1', userCreator: 'a', timestamp: Date.now() }, { id: '2', testo: 'prova2', titolo: 'prova2', userCreator: 'b', timestamp: Date.now() }, { id: '3', testo: 'prova3', titolo: 'prova3', userCreator: 'a', timestamp: Date.now() }];
 
 // ========== LISTA API ==========
 
 // GET Lista Note (tipo id, Testo, Titolo, Username Creatore, Timestamp di creazione)  localhost:3000/note/note
 router.get('/note', async (req, res) => {
     console.log("get tutte note")
-    res.status(200).json({result:true, listaNote:noteList});
+    res.status(200).json({ result: true, listaNote: noteList });
 });
 
 // GET Lista Note di un Utente (es. /notes/<valore Username>)
 router.get('/note/:userCreator', async (req, res) => {
-    console.log("get note user for user="+ req.params.userCreator)
+    console.log("get note user for user=" + req.params.userCreator)
     let found = false;
     // creo lista vuota
     let noteUserList = [];
@@ -20,12 +20,12 @@ router.get('/note/:userCreator', async (req, res) => {
     for (let nota of noteList) {
         // verifico condizione
         if (req.params.userCreator == nota.userCreator) {
-             // se condizione è ok aggiungo elemento alla lista nuova
-             noteUserList.push(nota);
+            // se condizione è ok aggiungo elemento alla lista nuova
+            noteUserList.push(nota);
         }
     }
-     // ritorno response
-    res.status(200).json({ result: true, listaNote:noteUserList});
+    // ritorno response
+    res.status(200).json({ result: true, listaNote: noteUserList });
 });
 
 // GET Nota singola (es. /notes/<valore ID>)
@@ -34,13 +34,13 @@ router.get('/nota/:id', (req, res) => {
     let found = false;
     for (let nota of noteList) {
         if (req.params.id == nota.id) {
-            res.status(200).json({ result: true, nota:nota});
+            res.status(200).json({ result: true, nota: nota });
             found = true;
             break;
         }
     }
     if (!found) {
-        res.status(404).json({ result:false });
+        res.status(404).json({ result: false });
     }
 });
 
@@ -58,8 +58,8 @@ router.post('/note', (req, res) => {
     if (found) {
         res.status(409).json({ result: false });
     } else {
-        noteList.push({ id: req.body.id, testo: req.body.testo, titolo: req.body.titolo, userCreator: req.body.userCreator, timestamp: Date.now()});
-        res.status(200).json({result: true});
+        noteList.push({ id: req.body.id, testo: req.body.testo, titolo: req.body.titolo, userCreator: req.body.userCreator, timestamp: Date.now() });
+        res.status(200).json({ result: true });
     }
 });
 
@@ -88,15 +88,13 @@ router.delete('/nota/:id', (req, res) => {
 router.delete('/note/:userCreator', (req, res) => {
     console.log("delete")
     let userCreator = req.params.userCreator;
-    for (let nota of noteList) {
-    // controllo che ogni nota sia di quell utente
-        if (userCreator == nota.userCreator) {
-            // se condizione è ok elimino nota
-            var index = noteList.indexOf(nota);
-            noteList.splice(index, 1);
+    for (var i = 0; i < noteList.length; i++) {
+        if (userCreator == noteList[i].userCreator) {
+            noteList.splice(i--, 1);
         }
     }
-     res.status(200).json({ result: true });
+    res.status(200).json({ result: true });
 });
+
 
 module.exports = router;

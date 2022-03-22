@@ -1,0 +1,11 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+        <h1>Home</h1>
+        <span class="menu-spacer"></span>
+        <span class="flexExpand"></span>
+        <div>
+            <a mat-button (click)="logOut()">User: {{ this.currentUser}} - Logout </a>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>
+<app-note></app-note>

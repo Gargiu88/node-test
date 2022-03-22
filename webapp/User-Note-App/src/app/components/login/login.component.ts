@@ -25,17 +25,20 @@ export class LoginComponent implements OnInit {
   }
 
   logIn() {
-    this.authServ.logIn(this.loginForm.get("username")?.value, this.loginForm.get("password")?.value).subscribe((res) =>{ 
-      // il backend torna TRUE se login ok, FALSE se login non ok { result : true/false}
-      // se result = true faccio A....
-      if(res.result) {
-        localStorage.setItem('currentUser', res.username);
-        this.router.navigate(['note']); // se il logIn è corretto, mi porta alla pagina delle note
-      // altrimenti faccio B... 
-      }else{
-        alert("ERRORE credenziali sbagliate!") // altrimenti genera errore
-      }
-    });
+    this.authServ.logIn(this.loginForm.get("username")?.value, this.loginForm.get("password")?.value)
+      .subscribe(
+        (res: any) => {
+          // il backend torna TRUE se login ok, FALSE se login non ok { result : true/false}
+          // se result = true(risposta 200):
+          if (res.result) {
+            localStorage.setItem('currentUser', res.username);
+            this.router.navigate(['home/note']); // se il logIn è corretto, mi porta alla pagina delle note
+          }
+        },
+        // Se risposta non 200:
+        (err: any) => {
+          alert("Errore credenziali errate!!")
+        });
   }
 
   goToSignup() {

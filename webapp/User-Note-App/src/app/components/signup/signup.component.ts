@@ -12,9 +12,9 @@ export class SignupComponent implements OnInit {
 
   // signupForm è il nome del form che ho messo nel .html x fare il binding delle proprieta inserite(al posto del ngModel)
   signupForm = this.formBuilder.group({
-    username: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-    confPassword: ['', [Validators.required]]
+    username: ['', [Validators.required, Validators.minLength(1)]],
+    password: ['', [Validators.required, Validators.minLength(1)]],
+    confPassword: ['', [Validators.required, Validators.minLength(1)]]
   });
 
   // nel costruttore importo il form builder per implementare form nel .html
@@ -24,6 +24,37 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
   }
 
- 
+  checkPassword(): boolean {
+    let passwordCorrect = false;
+    if (this.signupForm.get("password")?.value == '' || this.signupForm.get("confPassword")?.value == '') {
+      alert("Errore compilare i campi password!");
+      return false;
+    }
+    if (this.signupForm.get("password")?.value == this.signupForm.get("confPassword")?.value) {
+      // controlla se le password corrispondono
+      passwordCorrect = true;
+    }
+    if (!passwordCorrect) {
+      alert("ERRORE le password non corrispondono!")
+    }
+    return passwordCorrect;
+  }
+
+  save() {
+    if (this.checkPassword()) { // true
+      console.log("Password correct")
+      this.authServ.signUp(this.signupForm.get("username")?.value, this.signupForm.get("password")?.value).subscribe(response => {
+        if (response) {
+          if (this.signupForm.get("username")?.value != '') {
+            this.router.navigate(['/']);
+          } else {
+            alert("Errore inserire username");
+          }
+        }
+      }, (err: any) => {
+        alert("Errore utente già registrato!")
+      });
+    }
+  }
 
 }
