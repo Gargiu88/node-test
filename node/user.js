@@ -5,9 +5,9 @@ const Router = express.Router();
 let listaUtenti = [
   /* { username: 'Andrea', password: 'Mio' },
   { username: 'Lilo', password: 'solilo' }, */
-  new Utente('Andrea', 'Mio'),
-  new Utente('Lilo', 'solilo'),
-  new Utente('Amadeus', 'fiorello'),
+  new Utente('a', 'a'),
+  new Utente('b', 'b'),
+  new Utente('c', 'c'),
 ];
 
 Router.get('', async (req, res) => {
@@ -19,11 +19,11 @@ Router.get('/:username', async (req, res) => {
   if (trovato) {
     res.status(200).json(trovato);
   } else {
-    res.status(404).json({ result: 'utente non trovato' });
+    res.status(404).json({ result: 'user not found' });
   }
 });
 
-Router.post('/nuovoutente', async (req, res) => {
+Router.post('/newuser', async (req, res) => {
   console.log(req.body);
   console.log('prima di inserire', listaUtenti);
   let ce = false;
@@ -36,7 +36,7 @@ Router.post('/nuovoutente', async (req, res) => {
     }
   }
   if (ce) {
-    res.status(409).json({ dice: 'conflitto' });
+    res.status(409).json({ result: 'collision' });
   } else {
     listaUtenti.push(
       /* {
@@ -54,8 +54,34 @@ Router.post('/nuovoutente', async (req, res) => {
 Router.delete('/:utdelete', async (req, res) => {
   var ut = req.params.utdelete;
   listaUtenti = listaUtenti.filter((u) => u.username !== ut);
-  res.status(200).json({ dico: 'utente cancellato' });
+  res.status(200).json({ result: 'user has been deleted' });
   console.log(listaUtenti);
 });
+
+Router.post('/userexist', async (req, res) => {
+  if (
+    listaUtenti.some(
+      (u) => u.username == req.body.username && u.password == req.body.password
+    )
+  ) {
+    res.status(200).json({ result: 'user exists' });
+  } else {
+    res.status(404).json({ result: 'unregistered user' });
+  }
+});
+
+/* Router.post('/login', async (req, res) => {
+  let found = false;
+  for (let u of listaUtenti) {
+    if (u.username == req.body.username && u.password == req.body.password) {
+      res.status(200).json({ result: 'true', username: u.username });
+      found = true;
+      break;
+    }
+  }
+  if (!found) {
+    res.status(404).json({ result: 'false' });
+  }
+}); */
 
 module.exports = Router;

@@ -1,0 +1,25 @@
+<div class="signup">
+  <form [formGroup]="form" (ngSubmit)="iscriviti()">
+    <div class="input">
+      <fa-icon [icon]="iconauser"></fa-icon>
+      <input type="text" placeholder="username" formControlName="username" />
+    </div>
+    <div class="input">
+      <fa-icon [icon]="iconapass"></fa-icon>
+      <input
+        type="password"
+        placeholder="password"
+        formControlName="password"
+      />
+    </div>
+    <div class="input">
+      <fa-icon [icon]="iconapass"></fa-icon>
+      <input
+        type="password"
+        placeholder="check password"
+        formControlName="checkpassword"
+      />
+    </div>
+    <button type="submit">SignUp</button>
+  </form>
+</div>

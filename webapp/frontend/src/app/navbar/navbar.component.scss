@@ -1,0 +1,38 @@
+nav {
+  margin: 0;
+  padding: 0 1em;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  ul {
+    list-style-type: none;
+    display: flex;
+  }
+
+  a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 1em;
+  }
+
+  a:hover {
+    background-color: rgb(212, 212, 212);
+    cursor: pointer;
+  }
+}
+
+button {
+  border-style: none;
+  font-size: 1em;
+  padding: 1em;
+}
+
+button:hover {
+  background-color: rgb(212, 212, 212);
+  cursor: pointer;
+  padding: 1em;
+}

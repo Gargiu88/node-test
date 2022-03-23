@@ -3,22 +3,26 @@ const express = require('express');
 const Router = express.Router();
 
 let listaNote = [
-  new Nota('ab1234', 'ciao ciao ciao', 'ciao', 'Lillo'),
-  new Nota('ab1235', 'amo marchu', 'love', 'Andrea'),
-  new Nota('ab1236', 'amo tanto marchu', 'lovii', 'Andrea'),
+  new Nota('a1', 'ciao1', 'ciao1', 'a'),
+  new Nota('a2', 'ciao2', 'ciao2', 'b'),
+  new Nota('a3', 'ciao3', 'ciao3', 'c'),
 ];
 
 Router.get('', async (req, res) => {
+  //tutte le note di tutti gli utenti
   res.status(200).json(listaNote);
 });
 
 Router.get('/:username', async (req, res) => {
+  //tutte le note di un utente
+  console.log('GET:\n', listaNote);
   var us = req.params.username;
   var note = listaNote.filter((no) => no.username_creatore == us);
   res.status(200).json(note);
 });
 
 Router.get('/id/:id', async (req, res) => {
+  //singola nota per id
   //due / perchè altrimenti vanno in conflitto
   console.log(listaNote);
   var ids = req.params.id;
@@ -27,7 +31,8 @@ Router.get('/id/:id', async (req, res) => {
   res.status(200).json(nota);
 });
 
-Router.post('/nuovanota', async (req, res) => {
+Router.post('/newnota', async (req, res) => {
+  //add nuova nota
   let ce = false;
   for (let u of listaNote) {
     if (u.id == req.body.id) {
@@ -36,7 +41,7 @@ Router.post('/nuovanota', async (req, res) => {
     }
   }
   if (ce) {
-    res.status(409).json({ dice: 'conflitto' });
+    res.status(409).json({ result: 'collision' });
   } else {
     listaNote.push(
       new Nota(
@@ -56,17 +61,19 @@ Router.post('/nuovanota', async (req, res) => {
 });
 
 Router.delete('/:noteid', async (req, res) => {
+  //cancella nota per id
   var not = req.params.noteid;
   listaNote = listaNote.filter((u) => u.id !== not);
-  res.status(200).json({ dico: 'nota cancellata' });
+  res.status(200).json({ result: 'nota deleted' });
   console.log(listaNote);
 });
 
-Router.delete('/user/:utente', async (req, res) => {
-  var ute = req.params.utente;
-  listaNote = listaNote.filter((u) => u.username_creatore !== ute);
-  res.status(200).json({ dico: 'note cancellate' });
-  console.log(listaNote);
+Router.delete('/user/:user', async (req, res) => {
+  //cancella tutte le note di un utente
+  var ute = req.params.user;
+  listaNote = listaNote.filter((u) => u.username_creatore != ute);
+  res.status(200).json({ result: 'note delelted' });
+  console.log('DELETE:\n', listaNote);
 });
 
 module.exports = Router;

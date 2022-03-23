@@ -1,0 +1,22 @@
+<form [formGroup]="form" (ngSubmit)="conferma()">
+  <div class="inserisci">
+    <h1>{{ data.titolo }}</h1>
+    <div class="nota">
+      <div class="input">
+        <input type="text" placeholder="id" formControlName="id" />
+        <input type="text" placeholder="titolo" formControlName="titolo" />
+      </div>
+      <textarea
+        name="testo"
+        cols="30"
+        rows="10"
+        placeholder="testo nota"
+        formControlName="testo"
+      ></textarea>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()" type="reset">Annulla</button>
+    <button mat-button cdkFocusInitial type="submit">Conferma</button>
+  </div>
+</form>

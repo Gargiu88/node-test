@@ -1,0 +1,45 @@
+div {
+  margin: 2em;
+}
+
+h2 {
+  margin-bottom: 1em;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+button {
+  margin: 1em 0 1em 1em; //up dx down sx
+  padding: 0.7em;
+  border-radius: 35px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.card-container {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.card {
+  border-style: ridge;
+  border-radius: 1em;
+  max-width: 30%;
+  margin: 1em;
+}
+
+.titolo {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.sottotitolo {
+  color: rgba(0, 0, 0, 0.562);
+}
+
+.contenuto {
+  font-size: large;
+}

@@ -1,0 +1,23 @@
+<div class="inizio">
+  <div class="login">
+    <form [formGroup]="form" (ngSubmit)="accedi()">
+      <div class="input">
+        <fa-icon [icon]="iconauser"></fa-icon>
+        <input type="text" placeholder="username" formControlName="username" />
+      </div>
+      <div class="input">
+        <fa-icon [icon]="iconapass"></fa-icon>
+        <input
+          type="password"
+          placeholder="password"
+          formControlName="password"
+        />
+      </div>
+      <button type="submit">LogIn</button>
+    </form>
+    <div class="signup">
+      <p>Non sei ancora iscritto? Iscriviti</p>
+      <button routerLink="/signup">SignUp</button>
+    </div>
+  </div>
+</div>

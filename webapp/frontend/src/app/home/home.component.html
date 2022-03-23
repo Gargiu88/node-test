@@ -1,0 +1,19 @@
+<div>
+  <div>
+    <h2>Note di {{ utlog.username }}</h2>
+    <button (click)="aggiunginota()">Crea Nota</button>
+    <button (click)="deleteall()">Elimina Tutte</button>
+  </div>
+  <div class="card-container">
+    <mat-card class="card" *ngFor="let n of note">
+      <mat-card-title class="titolo">{{ n.titolo }}</mat-card-title>
+      <mat-card-subtitle class="sottotitolo">
+        id: {{ n.id }}, creata il: {{ n.timestamp }}
+      </mat-card-subtitle>
+      <mat-card-content class="contenuto">{{ n.testo }}</mat-card-content>
+      <mat-card-actions>
+        <button (click)="deletenota(n)">Elimina</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

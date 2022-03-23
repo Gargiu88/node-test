@@ -1,0 +1,46 @@
+.inizio {
+  background-color: rgb(238, 232, 224);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  background-color: rgba(255, 255, 255, 0.479);
+  display: flex;
+  margin-bottom: 20px;
+  padding: 1em;
+  border-radius: 35px;
+
+  fa-icon {
+    margin-right: 1em;
+  }
+
+  input {
+    background-color: transparent;
+    border: none;
+
+    &:focus {
+      outline: none; //per chrome
+      border: none; //per firefox e safari
+    }
+  }
+}
+
+button {
+  margin-top: 1em;
+  padding: 1em;
+  border-radius: 35px;
+  display: block;
+  width: 100%;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.signup {
+  margin-top: 2em;
+  display: block;
+}
